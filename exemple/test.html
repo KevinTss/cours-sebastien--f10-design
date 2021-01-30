@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+
+    function test() {
+      console.log('++')
+      console.log(this)
+    }
+    
+    
+    test()
+    test.bind({lol: 'lol'})()
+    
+    const test2= () =>{
+      console.log('--')
+      console.log(this)
+    }
+    
+    test2()
+    test2.bind({lol: 'lol'})()
+    
+    class person {
+      name = "kevin";
+      age= 28;
+
+      presenter() {
+        console.log(`Bonjour, je suis ${this.name}`)
+        console.log(this);
+
+        this.presenter2()
+      }
+
+      presenter2 = () => {
+        console.log(this);
+        console.log(`Bonjour, je suis ${this.name}`)
+      } 
+
+      render() {
+        this.presenter.bind(this, '')
+      }
+    }
+
+    // const kevin = new person()
+
+    // kevin.presenter()
+    // // kevin.presenter2()
+
+    // class a {
+    //   name= "lol"
+    //   fait(personne) {
+    //     personne.presenter()
+    //     personne.presenter2()
+    //   }
+    // }
+
+    // const b = new a()
+    // b.fait(kevin)
+
+  </script>
+</body>
+</html>
