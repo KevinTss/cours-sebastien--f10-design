@@ -2,20 +2,38 @@ import React from "react";
 import "./App.css";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log("--constructor--", props);
+  state = {
+    albums: []
   }
 
-  // utiliser componentDidMount()
-  // pour recuperer les données de JSON place holder: https://jsonplaceholder.typicode.com/
-  // Et de les ajouter au state
-  // et de les afficher dans le render
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/albums')
+      .then((response) => response.json())
+      .then(albumsList => {
+        console.log(albumsList)
+        this.setState({ albums: albumsList });
+      });
+  }
+
+  componentWillUnmount() {
+    // make fetch request
+  }
 
   render() {
-    console.log("--render--");
-    return <div className="App">Welcome</div>;
+    return (
+      // <ul>
+      //   {this.state.albums.map((album) => (
+      //     <li key={album.id}>{album.title}</li>
+      //   ))}
+      // </ul>
+      <React.Fragment>
+        {this.state.albums.map((album) => (
+          <div key={album.id}>{album.title}</div>
+        ))}
+      </React.Fragment>
+    )
   }
 }
+
 
 export default App;
