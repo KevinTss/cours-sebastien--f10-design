@@ -1,10 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
 function Navigation() {
-  // const navStyle = {
-  //   color: 'white',
-  //   textDecoration: 'none',
-  // }
 
   return (
     <nav>
@@ -12,8 +8,17 @@ function Navigation() {
         <h3>JSONPlaceholder</h3>
       </NavLink>
       <ul className="Links">
+        <NavLink activeClassName="current" to="/posts">
+          <li className="liNav">Posts</li>
+        </NavLink>
+        <NavLink activeClassName="current" to="/comments">
+          <li className="liNav">Comments</li>
+        </NavLink>
         <NavLink activeClassName="current" to="/albums">
           <li className="liNav">Albums</li>
+        </NavLink>
+        <NavLink activeClassName="current" to="/todos">
+          <li className="liNav">Todos</li>
         </NavLink>
         <NavLink activeClassName="current" to="/users">
           <li className="liNav">Users</li>

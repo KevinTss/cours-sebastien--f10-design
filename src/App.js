@@ -14,8 +14,17 @@ function App() {
           <Route exact path='/' >
             <Home />
           </Route>
+          <Route path='/posts' >
+            <Fetch profil={posts} />
+          </Route>
+          <Route path='/comments' >
+            <Fetch profil={comments} />
+          </Route>
           <Route path='/albums' >
             <Fetch profil={albums} />
+          </Route>
+          <Route path='/todos' >
+            <Fetch profil={todos} />
           </Route>
           <Route path='/users' >
             <Fetch profil={users} />
@@ -29,11 +38,38 @@ function App() {
   );
 }
 
+const posts = {
+  title: 'Posts',
+  url: 'https://jsonplaceholder.typicode.com/posts',
+  infos: {
+    title: 'title',
+    body: 'body'
+  }
+}
+
+const comments = {
+  title: 'Comments',
+  url: 'https://jsonplaceholder.typicode.com/comments',
+  infos: {
+    name: 'name',
+    email: 'email'
+  }
+}
+
 const albums = {
   title: 'Albums',
   url: 'https://jsonplaceholder.typicode.com/albums',
   infos: {
     title: 'title',
+  }
+}
+
+const todos = {
+  title: 'Todos',
+  url: 'https://jsonplaceholder.typicode.com/todos',
+  infos: {
+    title: 'title',
+    completed: 'completed',
   }
 }
 

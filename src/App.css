@@ -44,6 +44,6 @@ a:link {
 } */
 
 .current { 
-  background: aliceblue;
+  background-color: rgb(2, 115, 167);
   color: rgb(54, 54, 54);
 }
