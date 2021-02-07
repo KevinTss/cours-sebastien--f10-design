@@ -27,3 +27,5 @@ yarn-error.log*
 Draft.js
 Draft2.js
 Draft3.js
+
+yarn.lock
