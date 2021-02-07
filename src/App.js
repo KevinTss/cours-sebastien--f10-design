@@ -1,35 +1,42 @@
-import './App.css'
-import Navigation from './Navigation'
-import Fetch from './Fetch'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import "./App.css";
+import Navigation from "./Navigation";
+import Fetch from "./Fetch";
+import PostsPage from "./pages/Post";
 
 function App() {
   return (
     <Router
-      // forceRefresh={true}
+    // forceRefresh={true}
     >
       <div className="App">
-        <Navigation />
         <Switch>
-          <Route exact path='/' >
+          <Route exact path="/">
+            <Navigation />
             <Home />
           </Route>
-          <Route path='/posts' >
-            <Fetch profil={posts} />
+          <Route path="/posts">
+            <PostsPage />
           </Route>
-          <Route path='/comments' >
+          <Route path="/comments">
+            <Navigation />
             <Fetch profil={comments} />
           </Route>
-          <Route path='/albums' >
+          <Route path="/albums">
+            <Navigation />
             <Fetch profil={albums} />
           </Route>
-          <Route path='/todos' >
+          <Route path="/todos">
+            <Navigation />
             <Fetch profil={todos} />
           </Route>
-          <Route path='/users' >
+          <Route path="/users">
+            <Navigation />
             <Fetch profil={users} />
           </Route>
-          <Route path='/' >
+          <Route path="/">
+            <Navigation />
             <Error />
           </Route>
         </Switch>
@@ -39,61 +46,56 @@ function App() {
 }
 
 const posts = {
-  title: 'Posts',
-  url: 'https://jsonplaceholder.typicode.com/posts',
-  infos: {
-    title: 'title',
-    body: 'body'
-  }
-}
+  url: "https://jsonplaceholder.typicode.com/posts",
+};
 
 const comments = {
-  title: 'Comments',
-  url: 'https://jsonplaceholder.typicode.com/comments',
+  title: "Comments",
+  url: "https://jsonplaceholder.typicode.com/comments",
   infos: {
-    name: 'name',
-    email: 'email'
-  }
-}
+    name: "name",
+    email: "email",
+  },
+};
 
 const albums = {
-  title: 'Albums',
-  url: 'https://jsonplaceholder.typicode.com/albums',
+  title: "Albums",
+  url: "https://jsonplaceholder.typicode.com/albums",
   infos: {
-    title: 'title',
-  }
-}
+    title: "title",
+  },
+};
 
 const todos = {
-  title: 'Todos',
-  url: 'https://jsonplaceholder.typicode.com/todos',
+  title: "Todos",
+  url: "https://jsonplaceholder.typicode.com/todos",
   infos: {
-    title: 'title',
-    completed: 'completed',
-  }
-}
+    title: "title",
+    completed: "completed",
+  },
+};
 
 const users = {
-  title: 'Users',
-  url: 'https://jsonplaceholder.typicode.com/users',
+  title: "Users",
+  url: "https://jsonplaceholder.typicode.com/users",
   infos: {
-    name: 'name',
-    website: 'website',
-    phone: 'phone',
-  }
-}
+    name: "name",
+    website: "website",
+    phone: "phone",
+  },
+};
 
 const Home = () => (
   <div>
     <h1>&#x7B;JSON&#x7D; Placeholder</h1>
     <p>Free fake API for testing and prototyping.</p>
   </div>
-)
+);
 
 const Error = () => (
   <div>
     <h1>404 Error</h1>
   </div>
-)
+);
 
 export default App;
