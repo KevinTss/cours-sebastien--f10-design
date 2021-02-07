@@ -1,12 +1,13 @@
 import './App.css'
 import Navigation from './Navigation'
-import Albums from './Albums'
 import Fetch from './Fetch'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <Router>
+    <Router
+      forceRefresh={true}
+    >
       <div className="App">
         <Navigation />
         <Switch>
@@ -14,10 +15,10 @@ function App() {
             <Home />
           </Route>
           <Route path='/albums' >
-            <Albums />
+            <Fetch profil={albums} />
           </Route>
           <Route path='/users' >
-            <Fetch url={users.url} infos={users.infos} />
+            <Fetch profil={users} />
           </Route>
           <Route path='/' >
             <Error />
@@ -28,14 +29,22 @@ function App() {
   );
 }
 
+const albums = {
+  title: 'Albums',
+  url: 'https://jsonplaceholder.typicode.com/albums',
+  infos: {
+    title: 'title',
+  }
+}
+
 const users = {
+  title: 'Users',
   url: 'https://jsonplaceholder.typicode.com/users',
-  // infos: ['name', 'email']
   infos: {
     name: 'name',
-    email: 'email'
+    website: 'website',
+    phone: 'phone',
   }
-
 }
 
 const Home = () => (
