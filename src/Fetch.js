@@ -13,9 +13,12 @@ class Fetch extends Component {
     return this.infos.map((prop) => (<span key={prop}>{item[prop]}<br /></span>))
   }
 
-  async componentDidMount() {
-    // console.log('this.infos :>> ', this.infos);
-    console.log('this.props :>> ', this.props);
+  async fetchProps() {
+    this.title = this.props.profil.title
+    this.url = this.props.profil.url
+    this.infos = Object.values(this.props.profil.infos)
+    console.log('fetchProps this.state :>> ', this.state);
+
     try {
       const response = await fetch(this.url);
       if (!response.ok) {
@@ -29,7 +32,21 @@ class Fetch extends Component {
     }
   }
 
+  componentDidMount() {
+    this.fetchProps()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.profil.title !== prevProps.profil.title) {
+      // console.log('this.props.profil.title :>> ', this.props.profil.title);
+      // console.log('prevProps.profil.title :>> ', prevProps.profil.title);
+      console.log('DidUpdate this.props :>> ', this.props);
+      this.fetchProps()
+    }
+  }
+
   render() {
+    // console.log('this.state :>> ', this.state);
     return (
       <div>
         <h2>{this.title}</h2>
