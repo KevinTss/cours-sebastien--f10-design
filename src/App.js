@@ -1,7 +1,13 @@
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 import './App.css'
 import Navigation from './Navigation'
-import Fetch from './Fetch'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import PostsPage from './pages/PostsPage'
+import CommentsPage from './pages/CommentsPage'
+import AlbumsPage from './pages/AlbumsPage'
+import PhotosPage from './pages/PhotosPage'
+import TodosPage from './pages/TodosPage'
+import UsersPage from './pages/UsersPage'
 
 function App() {
   return (
@@ -15,19 +21,22 @@ function App() {
             <Home />
           </Route>
           <Route path='/posts' >
-            <Fetch profil={posts} />
+            <PostsPage />
           </Route>
           <Route path='/comments' >
-            <Fetch profil={comments} />
+            <CommentsPage />
           </Route>
           <Route path='/albums' >
-            <Fetch profil={albums} />
+            <AlbumsPage />
+          </Route>
+          <Route path='/photos' >
+            <PhotosPage />
           </Route>
           <Route path='/todos' >
-            <Fetch profil={todos} />
+            <TodosPage />
           </Route>
           <Route path='/users' >
-            <Fetch profil={users} />
+            <UsersPage />
           </Route>
           <Route path='/' >
             <Error />
