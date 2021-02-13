@@ -24,6 +24,6 @@ yarn-error.log*
 
 .eslintcache
 
-Draft.js
-Draft2.js
-Draft3.js
+Draft*.js
+
+yarn.lock
