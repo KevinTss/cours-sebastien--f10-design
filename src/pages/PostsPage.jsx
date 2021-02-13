@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 import useFetch from "../useFetch";
 import Layout from "../components/Layout";
 
@@ -7,6 +9,7 @@ const PostsPage = () => {
   return (
     <Layout>
       <h1>All posts</h1>
+      <NavLink to="/posts/new">New</NavLink>
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {posts &&

@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 import useFetch from "../useFetch";
 import Layout from "../components/Layout";
 
@@ -7,6 +9,7 @@ const CommentsPage = () => {
   return (
     <Layout>
       <h1>All comments</h1>
+      <NavLink to="/comments/new">New</NavLink>
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {comments &&

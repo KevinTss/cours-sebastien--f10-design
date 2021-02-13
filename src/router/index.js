@@ -7,6 +7,8 @@ import AlbumsPage from "../pages/AlbumsPage";
 import PhotosPage from "../pages/PhotosPage";
 import TodoPage from "../pages/TodoPage";
 import UsersPage from "../pages/UsersPage";
+import NewPostsPage from "../pages/NewPostsPage";
+import NewCommentPage from "../pages/NewCommentPage";
 
 const Error = () => (
   <div>
@@ -20,11 +22,17 @@ const Router = () => {
       <Route exact path="/">
         <HomePage />
       </Route>
-      <Route path="/posts">
+      <Route exact path="/posts">
         <PostsPage />
       </Route>
-      <Route path="/comments">
+      <Route exact path="/posts/new">
+        <NewPostsPage />
+      </Route>
+      <Route exact path="/comments">
         <CommentsPage />
+      </Route>
+      <Route exact path="/comments/new">
+        <NewCommentPage />
       </Route>
       <Route path="/albums">
         <AlbumsPage />
