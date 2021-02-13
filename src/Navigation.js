@@ -17,6 +17,9 @@ function Navigation() {
         <NavLink activeClassName="current" to="/albums">
           <li className="liNav">Albums</li>
         </NavLink>
+        <NavLink activeClassName="current" to="/photos">
+          <li className="liNav">Photos</li>
+        </NavLink>
         <NavLink activeClassName="current" to="/todos">
           <li className="liNav">Todos</li>
         </NavLink>
