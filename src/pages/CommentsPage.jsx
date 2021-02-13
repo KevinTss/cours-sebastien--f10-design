@@ -1,10 +1,11 @@
 import useFetch from "../useFetch";
+import Layout from "../components/Layout";
 
 const CommentsPage = () => {
-  const {datas: comments, isPending, error} = useFetch('https://jsonplaceholder.typicode.com/comments')
+  const { datas: comments, isPending, error } = useFetch("comments");
 
   return (
-    <div>
+    <Layout>
       <h1>All comments</h1>
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
@@ -12,12 +13,14 @@ const CommentsPage = () => {
         comments.map((comment) => (
           <div key={comment.id}>
             <h4>{comment.name}</h4>
-            {comment.body}<br/>
-            {comment.email}<br/>
-            <br/>
+            {comment.body}
+            <br />
+            {comment.email}
+            <br />
+            <br />
           </div>
         ))}
-    </div>
+    </Layout>
   );
 };
 

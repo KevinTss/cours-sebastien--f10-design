@@ -1,10 +1,11 @@
 import useFetch from "../useFetch";
+import Layout from "../components/Layout";
 
 const PostsPage = () => {
-  const {datas: posts, isPending, error} = useFetch('https://jsonplaceholder.typicode.com/posts')
+  const { datas: posts, isPending, error } = useFetch("posts");
 
   return (
-    <div>
+    <Layout>
       <h1>All posts</h1>
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
@@ -12,11 +13,12 @@ const PostsPage = () => {
         posts.map((post) => (
           <div key={post.id}>
             <h4>{post.title}</h4>
-            {post.body}<br/>
-            <br/>
+            {post.body}
+            <br />
+            <br />
           </div>
         ))}
-    </div>
+    </Layout>
   );
 };
 

@@ -1,7 +1,6 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 
 function Navigation() {
-
   return (
     <nav>
       <NavLink exact className="Links" activeClassName="current" to="/">
@@ -20,8 +19,8 @@ function Navigation() {
         <NavLink activeClassName="current" to="/photos">
           <li className="liNav">Photos</li>
         </NavLink>
-        <NavLink activeClassName="current" to="/todos">
-          <li className="liNav">Todos</li>
+        <NavLink activeClassName="current" to="/todo">
+          <li className="liNav">Todo</li>
         </NavLink>
         <NavLink activeClassName="current" to="/users">
           <li className="liNav">Users</li>

@@ -1,10 +1,11 @@
 import useFetch from "../useFetch";
+import Layout from "../components/Layout";
 
 const CommentsPage = () => {
-  const {datas: photos, isPending, error} = useFetch('https://jsonplaceholder.typicode.com/photos')
+  const { datas: photos, isPending, error } = useFetch("photos");
 
   return (
-    <div>
+    <Layout>
       <h1>All photos</h1>
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
@@ -12,12 +13,13 @@ const CommentsPage = () => {
         photos.map((photo) => (
           <div key={photo.id}>
             <h4>Album n° {photo.albumId}</h4>
-            {photo.title}<br/>
-            <img src={photo.thumbnailUrl} alt=""/>
-            <br/>
+            {photo.title}
+            <br />
+            <img src={photo.thumbnailUrl} alt="" />
+            <br />
           </div>
         ))}
-    </div>
+    </Layout>
   );
 };
 
