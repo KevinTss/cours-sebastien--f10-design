@@ -28,18 +28,6 @@ const Router = () => {
       <Route exact path="/posts/new">
         <NewPostsPage />
       </Route>
-      <Route exact path="/comments">
-        <CommentsPage />
-      </Route>
-      <Route exact path="/comments/new">
-        <NewCommentPage />
-      </Route>
-      <Route path="/albums">
-        <AlbumsPage />
-      </Route>
-      <Route path="/photos">
-        <PhotosPage />
-      </Route>
       <Route path="/todo">
         <TodoPage />
       </Route>

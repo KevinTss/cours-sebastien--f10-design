@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap'); */
 
 .App {
   text-align: center;
@@ -7,6 +7,10 @@
 body {
   background: rgb(54, 54, 54);
   color: aliceblue;
+}
+
+main {
+  margin-left: 50px;
 }
 
 nav {
@@ -29,25 +33,147 @@ nav {
 }
 
 li.liNav {
-  font-family: 'Open Sans Condensed', sans-serif;
+  /* font-family: 'Open Sans Condensed', sans-serif; */
   color: aliceblue;
   text-decoration: none;
-  font-size: 110%
+  /* font-size: 110% */
 }
 
 a {
   text-decoration: none;
 }
 
-/* a:hover, a:active, a:focus {
-  color: rgb(167, 247, 47);
+a:link, a:visited {
+  color: rgb(140, 207, 39);
 }
 
-a:link {
-  color: rgb(140, 207, 39);
-} */
+a:hover, a:active, a:focus {
+  color: rgb(167, 247, 47);
+}
 
 .current { 
   background-color: rgb(2, 115, 167);
   color: rgb(54, 54, 54);
 }
+
+/* Create new post page */
+
+#register-table td {
+  border-collapse: collapse;
+  /* padding-top: 10px; */
+  /* border: 1px solid gray; */
+}
+
+td.stable {
+  padding-top: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button.submitButton {
+  background-color: limegreen;
+}
+
+button:disabled {
+  background-color: rgb(187, 185, 185);
+}
+
+.invalidMessage {
+  color: red;
+  font-size: small;
+}
+
+.register {
+  text-align: left;
+  margin-left: 50px;
+}
+
+.hiddenContent {
+  font-size: small;
+  visibility: hidden;
+}
+
+.tdKey {
+  text-align: right;
+  padding-right: 10px;
+}
+
+input.txtInput {
+  width: 250px;
+}
+
+.radio-label {
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.invalidField {
+  border-color: red;
+}
+
+.invalidField:focus {
+  outline-color: red;
+}
+
+textarea {
+  min-width: 250px;
+  min-height: 90px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.checkbox-label {
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+th.free-options, td.free-options {
+  display: none;
+}
+  
+th.basic-options, td.basic-options {
+  display: none;
+}
+
+th.premium-options, td.premium-options {
+  display: none;
+}
+
+#optionsTable {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#optionsTable td,
+#optionsTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#optionsTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: rgb(187, 185, 185);
+  color: rgb(0, 0, 0);
+}
+
+.align-content {
+  text-align: center;
+  width: 70px;
+}
+
+.green {
+  color: limegreen;
+}
+
+.red {
+  color: red;
+}
+
+
