@@ -10,15 +10,6 @@ function Navigation() {
         <NavLink activeClassName="current" to="/posts">
           <li className="liNav">Posts</li>
         </NavLink>
-        <NavLink activeClassName="current" to="/comments">
-          <li className="liNav">Comments</li>
-        </NavLink>
-        <NavLink activeClassName="current" to="/albums">
-          <li className="liNav">Albums</li>
-        </NavLink>
-        <NavLink activeClassName="current" to="/photos">
-          <li className="liNav">Photos</li>
-        </NavLink>
         <NavLink activeClassName="current" to="/todo">
           <li className="liNav">Todo</li>
         </NavLink>

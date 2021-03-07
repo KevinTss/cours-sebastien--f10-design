@@ -9,7 +9,8 @@ const PostsPage = () => {
   return (
     <Layout>
       <h1>All posts</h1>
-      <NavLink to="/posts/new">New</NavLink>
+      <NavLink to="/posts/new"><button>Create a new post</button></NavLink>
+      
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {posts &&
