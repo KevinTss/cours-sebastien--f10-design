@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 
 import useFetch from "../useFetch";
 import Layout from "../components/Layout";
+import Button from "../components/ui/Button";
 
 const PostsPage = () => {
   const { datas: posts, isPending, error } = useFetch("posts");
@@ -9,8 +10,10 @@ const PostsPage = () => {
   return (
     <Layout>
       <h1>All posts</h1>
-      <NavLink to="/posts/new"><button>Create a new post</button></NavLink>
-      
+      <NavLink to="/posts/new">
+        <Button>Create a new post</Button>
+      </NavLink>
+
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {posts &&

@@ -6,12 +6,18 @@ import Layout from "../components/Layout";
 const CommentsPage = () => {
   const { datas: comments, isPending, error } = useFetch("comments");
 
+  let errorElement = null;
+
+  if (error) {
+    errorElement = <div className="box">{error}</div>;
+  }
+
   return (
     <Layout>
       <h1>All comments</h1>
       <NavLink to="/comments/new">New</NavLink>
       {isPending && <div>Loading...</div>}
-      {error && <div>{error}</div>}
+      {errorElement}
       {comments &&
         comments.map((comment) => (
           <div key={comment.id}>
