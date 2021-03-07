@@ -3,8 +3,10 @@ import { useHistory } from "react-router-dom";
 
 import ActionLayout from "../components/ActionLayout";
 
+const browsers = ["Chrome", "Edge", "Firefox", "Safari", "Opera", "Other"];
+
 const PostsPage = () => {
-  const history = useHistory()
+  const history = useHistory();
 
   const [name, setName] = useState("");
   const [validName, setValidName] = useState(false);
@@ -35,16 +37,13 @@ const PostsPage = () => {
   let selectSubscriptionValue = subscription || "DEFAULT";
 
   const handleSubmit = () => {
-    history.push("/posts")
+    history.push("/posts");
   };
 
   const regexCheck = (regex, content, setValidContent) => {
     let result = regex.test(content);
-    if (!result) {
-      return [setValidContent(false), setValidField("invalidField")];
-    } else {
-      return [setValidContent(true), setValidField("")];
-    }
+    setValidContent(result);
+    setValidField(result ? "" : "invalidField");
   };
 
   const updateBrowserList = (e) => {
@@ -120,391 +119,312 @@ const PostsPage = () => {
   }, [subscription]);
 
   useEffect(() => {
-    if (
-      validName &&
-      validFirstName &&
-      validEmail &&
-      validPhone &&
-      validSubscription
-    ) {
+    if (validName && validFirstName && validEmail && validPhone && validSubscription) {
       setValidSubmit(true);
       console.log("valid submit");
     }
-  }, [
-    validName,
-    validFirstName,
-    validEmail,
-    validPhone,
-    validSubmit,
-    validSubscription,
-  ]);
+  }, [validName, validFirstName, validEmail, validPhone, validSubmit, validSubscription]);
 
   return (
     <ActionLayout>
-    <div className="register">
-      <form method="GET" id="my_form" onSubmit={handleSubmit}>
-            <h1>Create new post</h1>
-        <table id="register-table">
-          <tbody>
-            <tr>
-              <td className="stable tdKey">
-                <label>Name*</label>
-              </td>
-              <td className="stable">
-                <input
-                  className={`txtInput ${validName ? "" : "invalidField"}`}
-                  required
-                  type="text"
-                  value={name}
-                  placeholder="Doe"
-                  onFocus={() => setFocusName(true)}
-                  onBlur={() => setFocusName(false)}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setName(e.target.value);
-                  }}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="hiddenContent"></td>
-              {focusName && !validName && (
-                <td className="invalidMessage">
-                  3 to 30 characters including letters (a-z, A-Z), space (' ')
-                  or dash (-)
-                </td>
-              )}
-            </tr>
-
-            <tr>
-              <td className="stable tdKey">
-                <label>First Name*</label>
-              </td>
-              <td className="stable">
-                <input
-                  className={`txtInput ${validFirstName ? "" : "invalidField"}`}
-                  required
-                  type="text"
-                  value={firstName}
-                  placeholder="John"
-                  onFocus={() => setFocusFirstName(true)}
-                  onBlur={() => setFocusFirstName(false)}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setFirstName(e.target.value);
-                  }}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="hiddenContent"></td>
-              {focusFirstName && !validFirstName && (
-                <td className="invalidMessage">
-                  3 to 30 characters including letters (a-z, A-Z), space (' ')
-                  or dash (-)
-                </td>
-              )}
-            </tr>
-
-            <tr>
-              <td className="stable tdKey">Gender</td>
-              <td className="stable">
-                <input
-                  className="radioInputf"
-                  // required
-                  type="radio"
-                  value="male"
-                  id="male"
-                  onChange={(e) => {
-                    setGender(e.target.value);
-                  }}
-                  name="gender"
-                />
-                <label className="radio-label" htmlFor="male">
-                  Male
-                </label>
-
-                <input
-                  className="radioInpdut"
-                  type="radio"
-                  value="female"
-                  id="female"
-                  onChange={(e) => {
-                    setGender(e.target.value);
-                  }}
-                  name="gender"
-                />
-                <label className="radio-label" htmlFor="female">
-                  Female
-                </label>
-              </td>
-            </tr>
-
-            <tr>
-              <td className="stable tdKey">
-                <label>Email*</label>
-              </td>
-              <td className="stable">
-                <input
-                  className={`txtInput ${validEmail ? "" : "invalidField"}`}
-                  required
-                  type="email"
-                  value={email}
-                  placeholder="JohnDoe@example.com"
-                  onFocus={() => setFocusEmail(true)}
-                  onBlur={() => setFocusEmail(false)}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setEmail(e.target.value);
-                  }}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="hiddenContent"></td>
-              {focusEmail && !validEmail && (
-                <td className="invalidMessage">
-                  Valid email including alphanumerics (A-z, 0-9), dot (@) and
-                  point (.)
-                </td>
-              )}
-            </tr>
-
-            <tr>
-              <td className="stable tdKey">
-                <label>Phone*</label>
-              </td>
-              <td className="stable">
-                <input
-                  className={`txtInput ${validPhone ? "" : "invalidField"}`}
-                  required
-                  type="tel"
-                  value={phone}
-                  placeholder="+33/0 5 10 10 10 10"
-                  onFocus={() => setFocusPhone(true)}
-                  onBlur={() => setFocusPhone(false)}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setPhone(e.target.value);
-                  }}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="hiddenContent"></td>
-              {focusPhone && !validPhone && (
-                <td className="invalidMessage">
-                  French phone number starting with +33 or 0 including numerics
-                  (0-9) and spaces (' ')
-                </td>
-              )}
-            </tr>
-
-            <tr>
-              <td className="stable tdKey">
-                <label>Browser(s) used</label>
-              </td>
-              <td className="stable">
-                <label className="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="Chrome"
-                    onChange={updateBrowserList}
-                  />
-                  Chrome
-                </label>
-                <label className="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="Edge"
-                    onChange={updateBrowserList}
-                  />
-                  Edge
-                </label>
-                <label className="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="Firefox"
-                    onChange={updateBrowserList}
-                  />
-                  Firefox
-                </label>
-                <label className="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="Safari"
-                    onChange={updateBrowserList}
-                  />
-                  Safari
-                </label>
-                <label className="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="Opera"
-                    onChange={updateBrowserList}
-                  />
-                  Opera
-                </label>
-                <label className="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="Other"
-                    onChange={updateBrowserList}
-                  />
-                  Other
-                </label>
-              </td>
-            </tr>
-
-            <tr>
-              <td className="stable tdKey">
-                <label>Subscription*</label>
-              </td>
-              <td className="stable">
-                <select
-                  value={selectSubscriptionValue}
-                  className={`${validSubscription ? "" : "invalidField"}`}
-                  required
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setSubscription(e.target.value);
-                  }}
-                >
-                  <option value="DEFAULT" disabled>
-                    Select one
-                  </option>
-                  <option value="Free">Free</option>
-                  <option value="Basic">Basic</option>
-                  <option value="Premium">Premium</option>
-                </select>
-              </td>
-            </tr>
-
-            {validSubscription && (
+      <div className="register">
+        <form method="GET" id="my_form" onSubmit={handleSubmit}>
+          <h1>Create new post</h1>
+          <table id="register-table">
+            <tbody>
               <tr>
-                <td className="tdKey">Options</td>
+                <td className="stable tdKey">
+                  <label>Name*</label>
+                </td>
                 <td className="stable">
-                  <table id="optionsTable">
-                    <tr>
-                      <th></th>
-                      <th className={`${optionsFree} align-content`}>Free</th>
-                      <th className={`${optionsBasic} align-content`}>Basic</th>
-                      <th className={`${optionsPremium} align-content`}>
-                        Premium
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>Monthly cost* (United States Dollar)</td>
-                      <td className={`${optionsFree} align-content`}>
-                        <strong>$0</strong>
-                      </td>
-                      <td className={`${optionsBasic} align-content`}>
-                        $13.99
-                      </td>
-                      <td className={`${optionsPremium} align-content`}>
-                        $17.99
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Number of screens you can watch on at the same time
-                      </td>
-                      <td className={`${optionsFree} align-content`}>1</td>
-                      <td className={`${optionsBasic} align-content`}>2</td>
-                      <td className={`${optionsPremium} align-content`}>4</td>
-                    </tr>
-                    <tr>
-                      <td>Unlimited movies and TV shows</td>
-                      <td className={`${optionsFree} align-content green`}>
-                        ✔
-                      </td>
-                      <td className={`${optionsBasic} align-content green`}>
-                        ✔
-                      </td>
-                      <td className={`${optionsPremium} align-content green`}>
-                        ✔
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>HD available</td>
-                      <td className={`${optionsFree} align-content red`}>✘</td>
-                      <td className={`${optionsBasic} align-content green`}>
-                        ✔
-                      </td>
-                      <td className={`${optionsPremium} align-content green`}>
-                        ✔
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Ultra HD available</td>
-                      <td className={`${optionsFree} align-content red`}>✘</td>
-                      <td className={`${optionsBasic} align-content red`}>✘</td>
-                      <td className={`${optionsPremium} align-content green`}>
-                        ✔
-                      </td>
-                    </tr>
-                  </table>
+                  <input
+                    className={`txtInput ${validName ? "" : "invalidField"}`}
+                    required
+                    type="text"
+                    value={name}
+                    placeholder="Doe"
+                    onFocus={() => setFocusName(true)}
+                    onBlur={() => setFocusName(false)}
+                    onChange={(e) => {
+                      e.preventDefault();
+                      setName(e.target.value);
+                    }}
+                  />
                 </td>
               </tr>
-            )}
+              <tr>
+                <td className="hiddenContent"></td>
+                {focusName && !validName && (
+                  <td className="invalidMessage">
+                    3 to 30 characters including letters (a-z, A-Z), space (' ') or dash (-)
+                  </td>
+                )}
+              </tr>
 
-            <tr>
-              <td className="tdKey">
-                <label>Comments</label>
-              </td>
-              <td className="stable">
-                <textarea
-                  value={comments}
-                  placeholder="Comments in a few words"
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setComments(e.target.value);
-                  }}
-                ></textarea>
-              </td>
-            </tr>
+              <tr>
+                <td className="stable tdKey">
+                  <label>First Name*</label>
+                </td>
+                <td className="stable">
+                  <input
+                    className={`txtInput ${validFirstName ? "" : "invalidField"}`}
+                    required
+                    type="text"
+                    value={firstName}
+                    placeholder="John"
+                    onFocus={() => setFocusFirstName(true)}
+                    onBlur={() => setFocusFirstName(false)}
+                    onChange={(e) => {
+                      e.preventDefault();
+                      setFirstName(e.target.value);
+                    }}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td className="hiddenContent"></td>
+                {focusFirstName && !validFirstName && (
+                  <td className="invalidMessage">
+                    3 to 30 characters including letters (a-z, A-Z), space (' ') or dash (-)
+                  </td>
+                )}
+              </tr>
 
-            <tr>
-              <td></td>
-              <td>
-                <br />
-                {validSubmit && <button className="submitButton">Submit</button>}
-                {!validSubmit && <button disabled>Submit</button>}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-      <br />
-      Name {">"}
-      {">"} {name}
-      <br />
-      FirstName {">"}
-      {">"} {firstName}
-      <br />
-      Gender {">"}
-      {">"} {gender}
-      <br />
-      Email {">"}
-      {">"} {email}
-      <br />
-      Phone {">"}
-      {">"} {phone}
-      <br />
-      Browser List {">"}
-      {">"}{" "}
-      {browserList.map((item) => (
-        <span>{`${item}	\u00A0`}</span>
-      ))}
-      <br />
-      subscription {">"}
-      {">"} {subscription}
-      <br />
-      Comments {">"}
-      {">"} {comments}
-      <br />
-      <br />
-    </div>
+              <tr>
+                <td className="stable tdKey">Gender</td>
+                <td className="stable">
+                  <input
+                    className="radioInputf"
+                    // required
+                    type="radio"
+                    value="male"
+                    id="male"
+                    onChange={(e) => {
+                      setGender(e.target.value);
+                    }}
+                    name="gender"
+                  />
+                  <label className="radio-label" htmlFor="male">
+                    Male
+                  </label>
+
+                  <input
+                    className="radioInpdut"
+                    type="radio"
+                    value="female"
+                    id="female"
+                    onChange={(e) => {
+                      setGender(e.target.value);
+                    }}
+                    name="gender"
+                  />
+                  <label className="radio-label" htmlFor="female">
+                    Female
+                  </label>
+                </td>
+              </tr>
+
+              <tr>
+                <td className="stable tdKey">
+                  <label>Email*</label>
+                </td>
+                <td className="stable">
+                  <input
+                    className={`txtInput ${validEmail ? "" : "invalidField"}`}
+                    required
+                    type="email"
+                    value={email}
+                    placeholder="JohnDoe@example.com"
+                    onFocus={() => setFocusEmail(true)}
+                    onBlur={() => setFocusEmail(false)}
+                    onChange={(e) => {
+                      e.preventDefault();
+                      setEmail(e.target.value);
+                    }}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td className="hiddenContent"></td>
+                {focusEmail && !validEmail && (
+                  <td className="invalidMessage">
+                    Valid email including alphanumerics (A-z, 0-9), dot (@) and point (.)
+                  </td>
+                )}
+              </tr>
+
+              <tr>
+                <td className="stable tdKey">
+                  <label>Phone*</label>
+                </td>
+                <td className="stable">
+                  <input
+                    className={`txtInput ${validPhone ? "" : "invalidField"}`}
+                    required
+                    type="tel"
+                    value={phone}
+                    placeholder="+33/0 5 10 10 10 10"
+                    onFocus={() => setFocusPhone(true)}
+                    onBlur={() => setFocusPhone(false)}
+                    onChange={(e) => {
+                      e.preventDefault();
+                      setPhone(e.target.value);
+                    }}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td className="hiddenContent"></td>
+                {focusPhone && !validPhone && (
+                  <td className="invalidMessage">
+                    French phone number starting with +33 or 0 including numerics (0-9) and spaces (' ')
+                  </td>
+                )}
+              </tr>
+
+              <tr>
+                <td className="stable tdKey">
+                  <label>Browser(s) used</label>
+                </td>
+                <td className="stable">
+                  {browsers.map((browser) => (
+                    <label className="checkbox-label">
+                      <input type="checkbox" name={browser} onChange={updateBrowserList} />
+                      {browser}
+                    </label>
+                  ))}
+                </td>
+              </tr>
+
+              <tr>
+                <td className="stable tdKey">
+                  <label>Subscription*</label>
+                </td>
+                <td className="stable">
+                  <select
+                    value={selectSubscriptionValue}
+                    className={`${validSubscription ? "" : "invalidField"}`}
+                    required
+                    onChange={(e) => {
+                      e.preventDefault();
+                      setSubscription(e.target.value);
+                    }}
+                  >
+                    <option value="DEFAULT" disabled>
+                      Select one
+                    </option>
+                    <option value="Free">Free</option>
+                    <option value="Basic">Basic</option>
+                    <option value="Premium">Premium</option>
+                  </select>
+                </td>
+              </tr>
+
+              {validSubscription && (
+                <tr>
+                  <td className="tdKey">Options</td>
+                  <td className="stable">
+                    <table id="optionsTable">
+                      <tr>
+                        <th></th>
+                        <th className={`${optionsFree} align-content`}>Free</th>
+                        <th className={`${optionsBasic} align-content`}>Basic</th>
+                        <th className={`${optionsPremium} align-content`}>Premium</th>
+                      </tr>
+                      <tr>
+                        <td>Monthly cost* (United States Dollar)</td>
+                        <td className={`${optionsFree} align-content`}>
+                          <strong>$0</strong>
+                        </td>
+                        <td className={`${optionsBasic} align-content`}>$13.99</td>
+                        <td className={`${optionsPremium} align-content`}>$17.99</td>
+                      </tr>
+                      <tr>
+                        <td>Number of screens you can watch on at the same time</td>
+                        <td className={`${optionsFree} align-content`}>1</td>
+                        <td className={`${optionsBasic} align-content`}>2</td>
+                        <td className={`${optionsPremium} align-content`}>4</td>
+                      </tr>
+                      <tr>
+                        <td>Unlimited movies and TV shows</td>
+                        <td className={`${optionsFree} align-content green`}>✔</td>
+                        <td className={`${optionsBasic} align-content green`}>✔</td>
+                        <td className={`${optionsPremium} align-content green`}>✔</td>
+                      </tr>
+                      <tr>
+                        <td>HD available</td>
+                        <td className={`${optionsFree} align-content red`}>✘</td>
+                        <td className={`${optionsBasic} align-content green`}>✔</td>
+                        <td className={`${optionsPremium} align-content green`}>✔</td>
+                      </tr>
+                      <tr>
+                        <td>Ultra HD available</td>
+                        <td className={`${optionsFree} align-content red`}>✘</td>
+                        <td className={`${optionsBasic} align-content red`}>✘</td>
+                        <td className={`${optionsPremium} align-content green`}>✔</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              )}
+
+              <tr>
+                <td className="tdKey">
+                  <label>Comments</label>
+                </td>
+                <td className="stable">
+                  <textarea
+                    value={comments}
+                    placeholder="Comments in a few words"
+                    onChange={(e) => {
+                      e.preventDefault();
+                      setComments(e.target.value);
+                    }}
+                  ></textarea>
+                </td>
+              </tr>
+
+              <tr>
+                <td></td>
+                <td>
+                  <br />
+                  {validSubmit && <button className="submitButton">Submit</button>}
+                  {!validSubmit && <button disabled>Submit</button>}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+        <br />
+        Name {">"}
+        {">"} {name}
+        <br />
+        FirstName {">"}
+        {">"} {firstName}
+        <br />
+        Gender {">"}
+        {">"} {gender}
+        <br />
+        Email {">"}
+        {">"} {email}
+        <br />
+        Phone {">"}
+        {">"} {phone}
+        <br />
+        Browser List {">"}
+        {">"}{" "}
+        {browserList.map((item) => (
+          <span>{`${item}	\u00A0`}</span>
+        ))}
+        <br />
+        subscription {">"}
+        {">"} {subscription}
+        <br />
+        Comments {">"}
+        {">"} {comments}
+        <br />
+        <br />
+      </div>
     </ActionLayout>
   );
 };
